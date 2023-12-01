@@ -11,8 +11,7 @@ This course is instruced in Japanese language by Kenji Saito.
 
 (3) "Git" を選びます。
 
-(4) Repository URL: に https://github.com/ks91/cda-demo.git
-　　 を指定し、Project directory name を付け、好みのディレクトリのサブディレクトリになるように指定します。
+(4) Repository URL: に https://github.com/ks91/cda-demo.git　 を指定し、Project directory name を付け、好みのディレクトリのサブディレクトリになるように指定します。
 　　 
 (5) "Create Project" をクリックします。
 
