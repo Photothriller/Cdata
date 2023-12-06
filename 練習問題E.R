@@ -2,7 +2,7 @@ sample <- c(4.2, 5.7, 9.3, 7.4, 4.4, 6.6, 6.1, 7.1)
 
 # 標本平均、標本分散、標本標準偏差を計算する。
 mean <- sum(sample)/length(sample)
-var <- sum((sample[1:8] - mean)^2/(length(sample) - 1))
+var <- sum((sample[1:8] - mean)^2)/(length(sample) - 1)
 sd <- sqrt(var)
 
 print(paste("標本平均", mean))
