@@ -44,4 +44,22 @@ for (x in 1:5) {
 }
 par(mfrow=c(1, 1))
 
+## さらに...
+for (x in 1:5) {
+  a <- x * 10
+  plot(表2[表2$V1==a, 2], 表2[表2$V1==a, 3],
+       type="o", lty=x, pch=x, col=x,
+       ylim=c(0, 100), xlim=c(0, 50),
+       axes=F, ann=F)
+  par(new=T)
+}
+axis(1)
+axis(2)
+mtext("データ損失率 (%)", side=1, line=2)
+mtext("検証可能性 (%)", side=2, line=2)
+legend("bottomleft",
+       legend=c("a=50", "a=40", "a=30", "a=20", "a=10"),
+       lty=5:1, pch=5:1, col=5:1)
+box()
+
 # さまざまなグラフ描画-2.R
