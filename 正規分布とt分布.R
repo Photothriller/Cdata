@@ -36,7 +36,7 @@ for (k in 2:5) {
   par(new=T)
 }
 
-legend <- c("N(0, 1^2)")
+legend <- c("N(0,1^2)")
 for (k in 2:5) {
   legend <- c(legend, sprintf("t(%d)", 2^k))
 }
