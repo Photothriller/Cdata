@@ -36,8 +36,10 @@ for (k in 2:5) {
   par(new=T)
 }
 
-legend <- c("N(0,1^2)",
-  "t(4)", "t(8)", "t(16)", "t(32)")
+legend <- c("N(0, 1^2)")
+for (k in 2:5) {
+  legend <- c(legend, sprintf("t(%d)", 2^k))
+}
 legend("topleft", legend=legend, lty=1:5, col=1:5)
 
 ## 臨界値 t_{0.05}(df) を調べる
