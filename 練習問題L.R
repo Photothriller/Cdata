@@ -19,7 +19,7 @@ lower <- xbar - t_005df * s / sqrt(n)
 upper <- xbar + t_005df * s / sqrt(n)
 
 ## sprintf は書式に合わせて文字列を作ります。
-str <- sprintf("95%% CI = [%f, %f]", lower, upper)
+str <- sprintf("95%% CI [%.1f, %.1f]", lower, upper)
 print(str)
 
 # 以上が教科書通りの解法です。以下は t検定を行います。
