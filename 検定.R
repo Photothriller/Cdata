@@ -123,4 +123,40 @@ tdistg <- function(df, x=NULL, mu=NULL, s=NULL) {
   legend("topright", legend=legend)
 }
 
+# 関数 fdistg(dfb, dfw) : F分布を描画し棄却域を赤で示す
+# dfb : 群間分散の自由度 df_{between}
+# dfw : 群内分散の自由度 df_{within}
+# f : F値 (NULL)
+fdistg <- function(dfb, dfw, f=NULL) {
+  curve(df(x, dfb, dfw), 0, 5,
+       main=str2lang(paste0("F(", dfb, ",", dfw, ")")))
+
+  # 臨界値F_{0.05}(dfb, dfw)の線を描く
+  F_005 <- qf(0.05, dfb, dfw, lower.tail=F)
+  arrows(F_005, 0, F_005, df(F_005, dfb, dfw), length=0)
+
+  # 臨界値を超える範囲の x を求め、2列の行列にする
+  xrange <- seq(F_005, 5, length=100) # 100個の点
+
+  # 右範囲のyを求め、多角形として赤で塗る
+  yrange <- df(xrange, dfb, dfw)
+  polygon(c(xrange, rev(xrange)),
+      c(rep(0, 100), rev(yrange)), col="red")
+
+  # 凡例を用意する (自由度と臨界値のみ)
+  legend <- c(
+    str2lang(paste0("F[0.05](", dfb, ",", dfw, ")==", F_005)))
+
+  # F値が指定されていれば、青い線を描く
+  if (is.null(f) == F) {
+    arrows(f, 0, f, df(f, dfb, dfw), length=0, col="blue")
+  
+    # 凡例にF値を付け足す
+    legend <- c(legend, str2lang(paste0("F==", f)))
+  }
+
+  # 凡例を描く
+  legend("topright", legend=legend)
+}
+
 # end of 検定.R
