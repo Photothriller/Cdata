@@ -162,4 +162,40 @@ fdistg <- function(dfb, dfw, f=NULL) {
   legend("topright", legend=legend)
 }
 
+# 関数 chisqdistg(df) : chi^2 分布を描画し棄却域を赤で示す
+# df : 自由度
+# chisq : chi^2 値 (NULL)
+chisqdistg <- function(df, chisq=NULL) {
+  curve(dchisq(x, df), 0, 20,
+        main=str2lang(paste0("{chi^2}", " (", df, ")")))
+  
+  # 臨界値chi^2_{0.05}(df)の線を描く
+  chi2_005 <- qchisq(0.05, df, lower.tail=F)
+  arrows(chi2_005, 0, chi2_005, dchisq(chi2_005, df), length=0)
+  
+  # 臨界値を超える範囲の x を求め、2列の行列にする
+  xrange <- seq(chi2_005, 20, length=100) # 100個の点
+  
+  # 右範囲のyを求め、多角形として赤で塗る
+  yrange <- dchisq(xrange, df)
+  polygon(c(xrange, rev(xrange)),
+          c(rep(0, 100), rev(yrange)), col="red")
+  
+  # 凡例を用意する (自由度と臨界値のみ)
+  legend <- c(
+    str2lang(paste0("{chi^2}[0.05](", df, ")==", chi2_005)))
+  
+  # F値が指定されていれば、青い線を描く
+  if (is.null(chisq) == F) {
+    arrows(chisq, 0, chisq, dchisq(chisq, df), length=0,
+        col="blue")
+    
+    # 凡例にF値を付け足す
+    legend <- c(legend, str2lang(paste0("{chi^2}==", chisq)))
+  }
+  
+  # 凡例を描く
+  legend("topright", legend=legend)
+}
+
 # end of 検定.R
