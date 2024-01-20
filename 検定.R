@@ -62,7 +62,8 @@ ndistg <- function(x=NULL, mu=NULL, sigma=NULL) {
 # x : 観測値(の差)(の平均) (NULL)
 # mu : 母平均(期待値) (NULL)
 # s : 標本標準偏差 (NULL)
-tdistg <- function(df, x=NULL, mu=NULL, s=NULL) {
+# t : t値 (NULL)
+tdistg <- function(df, x=NULL, mu=NULL, s=NULL, t=NULL) {
   # 参考の標準正規分布をグレイの点線で描く
   curve(dnorm(x), from=-5, to=5, ylim=c(0, 0.4),
         lty=3, col="gray", axes=F, ann=F)
@@ -113,6 +114,8 @@ tdistg <- function(df, x=NULL, mu=NULL, s=NULL) {
       return()
     }
     t <- (x - mu) / s
+  }
+  if (is.null(t) == F) {
     arrows(t, 0, t, dt(t, df), length=0, col="blue")
 
     # 凡例にt値を付け足す

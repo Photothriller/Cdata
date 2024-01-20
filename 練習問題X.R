@@ -34,7 +34,7 @@ print(sprintf("r = %f", r))
 t <- r * sqrt((n - 2) / (1 - r^2))
 print(sprintf("t = %f", t))
 
-tdistg(n - 2)
+tdistg(n - 2, t=t)
 
 # 以上が教科書通りの解法です。以下も相関分析を行います。
 # ステップ実行で見てください。
